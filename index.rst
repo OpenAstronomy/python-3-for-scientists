@@ -11,6 +11,10 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   python3_user_features.rst
+   python3_dev_features.rst
+   python3_user_transition_guide.rst
+   python3_dev_transition_guide.rst
 
 
 Indices and tables
