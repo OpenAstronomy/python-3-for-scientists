@@ -54,8 +54,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Python 3 guide for scientists'
-copyright = '2016, Adrian Price-Whelan, Stephanie Douglas, Stuart Mumford, Nathan Smith, Tom Robitaille, and Erik Tollerud'
-author = 'Adrian Price-Whelan, Stephanie Douglas, Stuart Mumford, Nathan Smith, Tom Robitaille, and Erik Tollerud'
+copyright = '2016, Stephanie Douglas, Adrian Price-Whelan, Stuart Mumford, Nathan Goldbaum, Tom Robitaille, and Erik Tollerud'
+author = 'Stephanie Douglas, Adrian Price-Whelan, Stuart Mumford, Nathan Goldbaum, Tom Robitaille, and Erik Tollerud'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
