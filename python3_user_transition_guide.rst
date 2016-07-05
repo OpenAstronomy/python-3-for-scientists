@@ -1,2 +1,122 @@
-Python 3 transition guide for users
-===================================
+Python 3 transition guide
+=========================
+
+Switching to Python 3 can seem like a daunting task, but this guide will try to
+provide some tips and resources to make it more straightforward.
+
+New code you write should be Python 3 compatible
+------------------------------------------------
+
+Starting now, *any new code you write should be Python 3 compatible!* This is
+the first and easiest step you can take towards switching. Thankfully, the most
+disruptive changes to the language have been back-ported to Python 2 so you can
+ensure that, when writing Python 2-style code, it will be executable in Python
+3. To use these back-ported features, you must import certain utilities from the
+builtin `__future__` package. It is generally recommended that, if you are still
+writing Python 2 compatible code, you should import the following four modules
+in any code you write::
+
+    from __future__ import (absolute_import, division,
+                            print_function, unicode_literals)
+
+Copy any paste this into the import block of any new script or piece of code you
+write in Python 2! Most notably, (1) this will enable you to use the
+Python 3-style `print` function:
+
+    >>> print "My spoon is too big"
+
+will now fail and you must instead do:
+
+    >>> print("My spoon is too big")
+
+And (2), integer division will no longer truncate:
+
+    >>> 1/2
+    0
+
+will become:
+
+    >>> 1/2
+    0.5
+
+Temporarily switch to Python 3 and see what breaks
+--------------------------------------------------
+
+To switch to Python 3, you don't have to permanently leave Python 2 behind and
+you don't have to switch in one sitting. Many of us are trying to balance
+a complicated workflow, deadlines, and software update requirements, so luckily
+it is possible to switch to Python 3 'on the side' while continuing to get
+work done in a separate Python environment. This is most easily done using a
+virtual environment manager. With virtual environments, you can temporarily
+switch over to Python 3, experiment, see what code runs, what code breaks, but
+then easily switch back to Python 2 to continue working.
+
+There are several possible choices for managing virtual environments in Python
+but to manage multiple *versions* of Python we have found the Anaconda package
+manager to be the best all-in-one option. If you are not using Anaconda, we
+highly recommend installing it and using it for package and environment
+management!
+
+If you are using Anaconda for Python 2, it's easy to create a new environement
+with Python 3. If you have never used Anaconda (conda) environments, you should
+have only one environment. If you type::
+
+    conda env list
+
+in your terminal, you should see a single line like::
+
+    root                  *   /Users/adrian/anaconda
+
+This just tells you that you only have a single ('root') environment. I like to
+have two main installations of Python for testing: one that uses the latest
+Python 2 version and one that uses the latest Python 3 version. I name the
+environments ``two`` and ``three``. For your main Python 2 environment, you can
+clone your root environment over (and therefore copy over any packages you've
+installed) by doing::
+
+    conda create --name two --clone root
+
+If instead you'd like to create a fresh installation of Python 2 in the new
+environment, you can do::
+
+    conda create --name two python=2
+
+(the ``python=2`` tells conda to install the latest version of Python 2 in the
+environment named ``two``). We can do the same thing to create a new environment
+for Python 3::
+
+    conda create --name three python=3
+
+Again, the ``python=3`` tells conda to install the latest version of Python 3 in
+this new environment (named ``three``). To enable an environment, you use::
+
+    source activate <name of environment>
+
+So, for each of these you can use::
+
+    source activate two
+
+and::
+
+    source activate three
+
+to switch back and forth between Python 2 and 3! When I first switched, I found
+that I was typing these commands a lot and created aliases in my shell profile
+to make it faster::
+
+    alias pytwo="source activate two"
+    alias pythree="source activate three"
+
+References
+``````````
+
+[1] http://conda.pydata.org/docs/using/envs.html
+
+Identify Python 3 incompatibilities and automatically update them
+-----------------------------------------------------------------
+
+If you have a lot of code with Python 2 print statements and other Python
+3-incompatible lines, it can be a huge pain to go file-by-file and modify the
+code to be compliant! Luckily, there are tools to help automate this process.
+
+TODO
