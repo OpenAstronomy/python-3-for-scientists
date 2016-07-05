@@ -21,16 +21,16 @@ In Python 2, integer division is the default, so 1/2 evaluates to 0. This means 
 
 	>>> int_one = 1
 	>>> int_two = 2
-	>>> int_one / int_two 
+	>>> int_one / int_two
 	0
-	>>> int_one * 1.0 / int_two 
+	>>> int_one * 1.0 / int_two
 	0.5
 
 In Python 3, the default division will yield a float, and integer division is accessed using the // operator::
 
-	>>> int_one / int_two 
+	>>> int_one / int_two
 	0.5
-	>>> int_one // int_two 
+	>>> int_one // int_two
 	0
 
 Unicode variable names
@@ -40,7 +40,7 @@ As with strings, Python 3 allows most unicode symbols to be used in variable nam
 
 	>>> π = 3.14159
 	>>> jalapeño = "a hot pepper"
-	
+
 (Sadly, no emoji here, though that functionality may be on the horizon.)
 
 Use caution if you're planning to share your code, though, as it's fairly easy to produce illegible code this way.
@@ -76,8 +76,8 @@ correctly interpret the ``**``.
           by hand (e.g. ``data/*.fits``) to make sure that this works on
           Windows as well as Linux and MacOS X.
 
-Function annotations
---------------------
+Function annotations / type hinting
+-----------------------------------
 
 Matrix multiplication operator
 ------------------------------
@@ -137,7 +137,7 @@ The ``*`` syntax can also be used for e.g. the first variable and variables in t
     >>> *rest, a, b = range(5)
     >>> a, b
     (3, 4)
-    
+
 This can be used for example to access the first two lines and the last line
 in a file:
 
