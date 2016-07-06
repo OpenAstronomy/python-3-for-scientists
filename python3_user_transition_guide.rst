@@ -1,33 +1,38 @@
 Python 3 transition guide
 =========================
 
-Switching to Python 3 can seem like a daunting task, but this guide will try to
-provide some tips and resources to make it more straightforward.
+Switching to Python 3 can seem like a daunting task, but this guide will
+provide some tips and resources to help make it more straightforward.
 
 New code you write should be Python 3 compatible
 ------------------------------------------------
 
 Starting now, *any new code you write should be Python 3 compatible!* This is
-the first and easiest step you can take towards switching. Thankfully, the most
-disruptive changes to the language have been back-ported to Python 2 so you can
-ensure that, when writing Python 2-style code, it will be executable in Python
-3. To use these back-ported features, you must import certain utilities from the
-builtin `__future__` package. It is generally recommended that, if you are still
-writing Python 2 compatible code, you should import the following four modules
-in any code you write::
+the first  step you can take towards switching. Thankfully, the most disruptive
+changes to the language have been back-ported to Python 2 so you can ensure
+that, when writing Python 2-style code, it will be executable in Python 3. To
+use these back-ported features, you must import certain utilities from the
+built-in `__future__` package. It is generally recommended that, if you are
+still writing Python 2 compatible code, you should import the following four
+modules in any code you write::
 
     from __future__ import (absolute_import, division,
                             print_function, unicode_literals)
 
 Copy any paste this into the import block of any new script or piece of code you
-write in Python 2! Most notably, (1) this will enable you to use the
-Python 3-style `print` function:
+write in Python 2! Most notably, (1) this will enable you to use the Python
+3-style `print` function:
 
-    >>> print "My spoon is too big"
+    >>> print("It's only a model")
 
-will now fail and you must instead do:
+The Python 2 print statement will now fail:
 
-    >>> print("My spoon is too big")
+    >>> print "It's only a model"
+      File "<stdin>", line 1
+        print "It's only a model"
+                                ^
+    SyntaxError: invalid syntax
+
 
 And (2), integer division will no longer truncate:
 
@@ -39,17 +44,26 @@ will become:
     >>> 1/2
     0.5
 
-Temporarily switch to Python 3 and see what breaks
---------------------------------------------------
+A slightly more annoying issue is that several of the built-in Python packages
+have been reorganized or moved. Most of the changes were made to fairly obscure
+packages (see [2]_ for a full list), but there are a few notable changes:
+
+- `cPickle` - renamed to `pickle`
+- `cProfile` - renamed to `profile`
+- `urllib`, `urllib2`, `urlparse` - have been combined into subpackages of
+  `urllib`
+
+Try out Python 3 and see what happens
+-------------------------------------
 
 To switch to Python 3, you don't have to permanently leave Python 2 behind and
-you don't have to switch in one sitting. Many of us are trying to balance
-a complicated workflow, deadlines, and software update requirements, so luckily
-it is possible to switch to Python 3 'on the side' while continuing to get
-work done in a separate Python environment. This is most easily done using a
-virtual environment manager. With virtual environments, you can temporarily
-switch over to Python 3, experiment, see what code runs, what code breaks, but
-then easily switch back to Python 2 to continue working.
+you don't have to switch in one sitting. Many of us are trying to balance a
+complicated workflow, deadlines, and software update requirements, so luckily it
+is possible to try out Python 3 while continuing to work in Python 2 in a
+separate Python environment. This is most easily done using a virtual
+environment manager. With virtual environments, you can switch over to Python 3,
+experiment, see what code runs, what code breaks, but then easily switch back to
+Python 2 if need be.
 
 There are several possible choices for managing virtual environments in Python
 but to manage multiple *versions* of Python we have found the Anaconda package
@@ -57,9 +71,10 @@ manager to be the best all-in-one option. If you are not using Anaconda, we
 highly recommend installing it and using it for package and environment
 management!
 
-If you are using Anaconda for Python 2, it's easy to create a new environement
-with Python 3. If you have never used Anaconda (conda) environments, you should
-have only one environment. If you type::
+If you are using Anaconda for Python 2 or have just installed Anaconda, it's
+easy to create a new environment that uses Python 3. If you have never used
+Anaconda (conda) environments, you should have only one environment. If you
+type::
 
     conda env list
 
@@ -107,16 +122,24 @@ to make it faster::
     alias pytwo="source activate two"
     alias pythree="source activate three"
 
-References
-``````````
-
-[1] http://conda.pydata.org/docs/using/envs.html
 
 Identify Python 3 incompatibilities and automatically update them
 -----------------------------------------------------------------
 
-If you have a lot of code with Python 2 print statements and other Python
+If you have a lot of code with Python 2 `print` statements and other Python
 3-incompatible lines, it can be a huge pain to go file-by-file and modify the
-code to be compliant! Luckily, there are tools to help automate this process.
+code to be compliant. Luckily, there are tools to help automate this process.
 
 TODO
+
+Advanced: Maintaining code that is compatible with Python 2 and 3
+-----------------------------------------------------------------
+
+TODO: six
+TODO: wrap iterators with list()
+
+References
+``````````
+
+[1] http://conda.pydata.org/docs/using/envs.html
+[2] http://python3porting.com/stdlib.html
