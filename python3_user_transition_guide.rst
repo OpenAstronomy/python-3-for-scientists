@@ -44,10 +44,10 @@ will become:
     >>> 1/2
     0.5
 
-A slightly more annoying issue is that several of the built-in Python packages
-have been reorganized or moved. Most of the changes were made to fairly obscure
-packages (`full list here <http://python3porting.com/stdlib.html>`_), but there
-are a few notable changes:
+A slightly more annoying issue is that several of the standard library Python
+packages have been reorganized or moved. Most of the changes were made to fairly
+obscure packages (`full list here <http://python3porting.com/stdlib.html>`_),
+but there are a few notable changes:
 
 - ``cPickle`` - renamed to ``pickle``
 - ``cProfile`` - renamed to ``profile``
@@ -190,7 +190,19 @@ actually fix the incompatible code, call with the ``-w`` flag::
 This can also be run on entire packages or directory trees to update code in
 bulk.
 
-Advanced: Maintaining code that is compatible with Python 2 and 3
------------------------------------------------------------------
+Advanced: Writing code that is compatible with Python 2 and 3
+-------------------------------------------------------------
 
-TODO: six
+As mentioned above, a number of standard library packages have been reorganized
+or renamed, meaning that import statements may fail when executing code in
+either Python 2 or 3. The pip-installable `six <http://pythonhosted.org/six/>`_
+package is here to help! ``six`` has a subpackage that normalizes the import
+paths for these cases so you don't have to write extra code to check whether the
+code is executed in 2 or 3. For example, to pickle data (``cPickle`` in Python
+2, ``pickle`` in Python 3), you can replace your import with::
+
+    >>> from six.moves import cPickle as pickle
+
+This will work in Python 2 or 3. `This website
+<https://wiki.python.org/moin/PortingToPy3k/BilingualQuickRef>`_ contains a
+number of other useful tips for maintaining code that runs in both 2 and 3.
