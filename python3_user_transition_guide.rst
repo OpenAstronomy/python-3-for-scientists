@@ -55,7 +55,7 @@ packages (see [2]_ for a full list), but there are a few notable changes:
 
 One other major change is that many built-in methods on container classes (e.g.,
 the dictionary) now return iterators instead of `list`s. For example, in
-Python 2:
+Python 2::
 
     >>> airspeed = {'ladened': 2, 'unladened': 11}
     >>> airspeed.keys()
@@ -63,7 +63,7 @@ Python 2:
     >>> airspeed.keys()[0]
     'ladened'
 
-In Python 3, the `.keys()` method instead returns an iterator object:
+In Python 3, the `.keys()` method instead returns an iterator object::
 
     >>> airspeed = {'ladened': 2, 'unladened': 11}
     >>> airspeed.keys()
@@ -75,7 +75,7 @@ In Python 3, the `.keys()` method instead returns an iterator object:
 
 These iterator objects support iteration (e.g., you can loop over the
 `dict_keys` as you would a list), but as shown above, do not support indexing.
-To get a list, just wrap any of these methods in a `list()` call, e.g.:
+To get a list, just wrap any of these methods in a `list()` call, e.g.::
 
     >>> the_keys = list(airspeed.keys())
     >>> the_keys[0]
@@ -104,7 +104,7 @@ easy to create a new environment that uses Python 3. If you have never used
 Anaconda (conda) environments, you should have only one environment. If you
 type::
 
-    conda env list
+    % conda env list
 
 in your terminal, you should see a single line like::
 
@@ -117,38 +117,38 @@ environments ``two`` and ``three``. For your main Python 2 environment, you can
 clone your root environment over (and therefore copy over any packages you've
 installed) by doing::
 
-    conda create --name two --clone root
+    % conda create --name two --clone root
 
 If instead you'd like to create a fresh installation of Python 2 in the new
 environment, you can do::
 
-    conda create --name two python=2
+    % conda create --name two python=2
 
 (the ``python=2`` tells conda to install the latest version of Python 2 in the
 environment named ``two``). We can do the same thing to create a new environment
 for Python 3::
 
-    conda create --name three python=3
+    % conda create --name three python=3
 
 Again, the ``python=3`` tells conda to install the latest version of Python 3 in
 this new environment (named ``three``). To enable an environment, you use::
 
-    source activate <name of environment>
+    % source activate <name of environment>
 
 So, for each of these you can use::
 
-    source activate two
+    % source activate two
 
 and::
 
-    source activate three
+    % source activate three
 
 to switch back and forth between Python 2 and 3! When I first switched, I found
 that I was typing these commands a lot and created aliases in my shell profile
 to make it faster::
 
-    alias pytwo="source activate two"
-    alias pythree="source activate three"
+    % alias pytwo="source activate two"
+    % alias pythree="source activate three"
 
 
 Identify Python 3 incompatibilities and automatically update them
@@ -156,9 +156,37 @@ Identify Python 3 incompatibilities and automatically update them
 
 If you have a lot of code with Python 2 `print` statements and other Python
 3-incompatible lines, it can be a huge pain to go file-by-file and modify the
-code to be compliant. Luckily, there are tools to help automate this process.
+code to be compliant. Python provides a tool -- `2to3` -- to automatically
+identify code that will error in Python 3 and, optionally, to update it in
+place. The Python documentation has documentation on how to use it ([3]_). For a
+single file, calling `2to3` on the file without any flags will output a diff
+showing any invalid code. For example, if we have a script called "test.py"
+containing a single line `print "yo"`::
 
-TODO
+    % 2to3 test.py
+    --- test.py (original)
+    +++ test.py (refactored)
+    @@ -1 +1 @@
+    -print "yo"
+    +print("yo")
+    RefactoringTool: Files that need to be modified:
+    RefactoringTool: test.py
+
+Note that it finds the Python 2-style `print` statement and even tells you what
+to change it to, but this did not modify the file to make it compatible. To
+actually fix the incompatible code, call with the `-w` flag:
+
+    % 2to3 -w test.py
+    --- test.py (original)
+    +++ test.py (refactored)
+    @@ -1 +1 @@
+    -print "yo"
+    +print("yo")
+    RefactoringTool: Files that were modified:
+    RefactoringTool: test.py
+
+This can also be run on entire packages or directory trees to update code in
+bulk.
 
 Advanced: Maintaining code that is compatible with Python 2 and 3
 -----------------------------------------------------------------
