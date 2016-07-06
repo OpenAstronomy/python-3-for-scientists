@@ -53,8 +53,36 @@ packages (see [2]_ for a full list), but there are a few notable changes:
 - `urllib`, `urllib2`, `urlparse` - have been combined into subpackages of
   `urllib`
 
-Try out Python 3 and see what happens
--------------------------------------
+One other major change is that many built-in methods on container classes (e.g.,
+the dictionary) now return iterators instead of `list`s. For example, in
+Python 2:
+
+    >>> airspeed = {'ladened': 2, 'unladened': 11}
+    >>> airspeed.keys()
+    ['ladened', 'unladened']
+    >>> airspeed.keys()[0]
+    'ladened'
+
+In Python 3, the `.keys()` method instead returns an iterator object:
+
+    >>> airspeed = {'ladened': 2, 'unladened': 11}
+    >>> airspeed.keys()
+    dict_keys(['ladened', 'unladened'])
+    >>> airspeed.keys()[0]
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    TypeError: 'dict_keys' object does not support indexing
+
+These iterator objects support iteration (e.g., you can loop over the
+`dict_keys` as you would a list), but as shown above, do not support indexing.
+To get a list, just wrap any of these methods in a `list()` call, e.g.:
+
+    >>> the_keys = list(airspeed.keys())
+    >>> the_keys[0]
+    'ladened'
+
+Give Python 3 a try
+-------------------
 
 To switch to Python 3, you don't have to permanently leave Python 2 behind and
 you don't have to switch in one sitting. Many of us are trying to balance a
