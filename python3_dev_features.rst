@@ -6,15 +6,17 @@ Chained Exceptions
 
 In python, the most natural way to communicate about an error is to raise an
 exception. If the error state is recoverable, the exception might be caught
-elsewhere and then dealt with, it might be re-raised to be dealth with at a
-higher level, or a completely new exception could be raised.
+elsewhere and then dealt with. If it is not recoverable, the original exception
+might be re-raised to be dealt with at a higher level, or a completely new
+exception could be raised.
 
-In Python 2, the error message that gets printed out when an exception is
-presented to a user only contains information about the last exception that was
+In Python 2, the error message that gets printed out when an exception is raised
+to the user level only contains information about the last exception that was
 raised. Information from intermediate exceptions generated at lower levels in
-the code are generally lost. This can be painful, especially when debuggin a
-library, as the error message containing information about the *real* error
-will get discarded in favor of a more generic error message.
+the code are lost unless care is taken to re-raise the exception with the
+appropriate information and context. This can be painful, especially when
+debugging a library, as the error message containing information about the *real*
+error will get discarded in favor of a more generic error message.
 
 Take the following short example::
 
@@ -47,8 +49,11 @@ Under Python 2, you will see a much less useful error message::
     RuntimeError: dict access failed
 
 Even in this contrived example you can see how the extra information from the
-original exception can ease debugging. In real code, where errors might
-propagate between files and in the worst case, across complex codebases, this
-extra information can be enough to head off an afternoon of fruitless head
+original exception can ease debugging. Note how under Python 3, the original
+exception is printed out, *along with the original traceback*. This makes it
+possible to immediately see where the original exception was raised, and where
+error handling code is re-raising another exception. In real code, where errors
+might propagate between files and in the worst case, across complex codebases,
+this extra information can be enough to head off an afternoon of fruitless head
 scratching and troubleshooting.
 
