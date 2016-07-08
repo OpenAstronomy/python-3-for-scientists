@@ -10,13 +10,14 @@ Changes you can make today to make the transition easier
 Any new code you write can easily be Python 3 compatible! This is the first step
 you can take towards switching. Thankfully, the most disruptive changes to the
 language have been back-ported to Python 2 so you can ensure that, when writing
-Python 2-style code, it will be executable in Python 3. To use these back-ported
-features, you must import certain utilities from the built-in ``__future__``
-package. It is generally recommended that, if you are still writing Python 2
-compatible code, you should import the following four modules in any code you
-write::
+new code that you intend to execute with Python 2, it will be executable in
+Python 3 once you switch. To use these back-ported changes, you must import
+certain utilities from the built-in ```__future__``
+<https://docs.python.org/2/library/__future__.html>`_ package. It is generally
+recommended that, if you are still writing Python 2 compatible code, you should
+import the following four modules in any code you write::
 
-    from __future__ import absolute_import, division, print_function
+    from __future__ import division, print_function, absolute_import
 
 Copy any paste this into the import block of any new script or piece of code you
 write in Python 2! Most notably, (1) this will enable you to use the Python
@@ -42,6 +43,13 @@ will become:
 
     >>> 1/2
     0.5
+
+For now, don't worry about `absolute_import` (but do include it in your
+import!). If you'd like to know more, `this is a good blog post <https://blog.ta
+nkywoo.com/python/2013/10/07/python-relative-and-absolute-import.html>`_ that
+explains what this does. If you want to know even more, here is a `StackOverflow
+post <http://stackoverflow.com/questions/33743880/what-does-from-future-import-a
+bsolute-import-actually-do>`_ about it.
 
 Other major changes in Python 3
 -------------------------------
@@ -143,7 +151,9 @@ There are several possible choices for managing virtual environments in Python
 but to manage multiple *versions* of Python we have found the Anaconda package
 manager to be the best all-in-one option. If you are not using Anaconda, we
 highly recommend installing it and using it for package and environment
-management!
+management! If you have a separate Python installation and prefer it, you can
+still install Anaconda to play with switching to Python 3 without messing up
+your other environment.
 
 If you are using Anaconda for Python 2 or have just installed Anaconda, it's
 easy to create a new environment that uses Python 3. If you have never used
