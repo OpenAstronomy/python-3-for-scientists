@@ -25,21 +25,21 @@ In Python 2, integer division is the default, so 1/2 evaluates to 0. This means
 frequently having to explicitly convert integers to floats when working with
 integer variables::
 
-  >>> int_one = 1
-  >>> int_two = 2
-  >>> int_one / int_two
-  0
-  >>> float(int_one) / int_two
-  0.5
+    >>> int_one = 1
+    >>> int_two = 2
+    >>> int_one / int_two
+    0
+    >>> float(int_one) / int_two
+    0.5
 
 or being careful to do things like ``/ 2.`` or ``* 0.5``. In Python 3, the
 default division will yield a float, and integer division is accessed using the //
 operator::
 
-  >>> int_one / int_two
-  0.5
-  >>> int_one // int_two
-  0
+    >>> int_one / int_two
+    0.5
+    >>> int_one // int_two
+    0
 
 This makes it safer to use by default, since there there is no longer any
 implicit conversion to integers.
@@ -52,8 +52,8 @@ names. In contrast, Python 2 could only use the basic ASCII character set for
 variable names. This means you can use foreign language words and letter-like
 symbols as variable names, e.g.::
 
-  >>> π = 3.14159
-  >>> jalapeño = "a hot pepper"
+    >>> π = 3.14159
+    >>> jalapeño = "a hot pepper"
 
 (Sadly, no emoji here!)
 
@@ -201,7 +201,7 @@ in the iterable::
     0
     >>> b
     1
-    >>> c
+    >>> rest
     [2, 3, 4]
 
 The ``*`` syntax can also be used for e.g. the first variable and variables in the middle::
@@ -290,11 +290,11 @@ that are too verbose such as:
     >>> 'The value is {value}.'.format(value=value)
     'The value is 80.'
 
-or we can end up in situations where the code is unecessarily complex, since
+or we can end up in situations where the code is unnecessarily complex, since
 ``value`` is detached from where it appears in the string.
 
->>> 'The value is {}.'.format(value)
-'The value is 80.'
+    >>> 'The value is {}.'.format(value)
+    'The value is 80.'
 
 The new `f-strings <https://www.python.org/dev/peps/pep-0498/>`_ allow you to
 use variable names directly inside the curly brackets:
