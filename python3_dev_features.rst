@@ -133,4 +133,3 @@ error handling code is re-raising another exception. In real code, where errors
 might propagate between files and in the worst case, across complex codebases,
 this extra information can be enough to head off an afternoon of fruitless head
 scratching and troubleshooting.
-
