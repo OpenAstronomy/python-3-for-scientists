@@ -33,5 +33,5 @@ Contributing to these pages
 We welcome contributions to these pages, whether fixes to the existing content,
 or new content! You can open issues and pull requests at our `GitHub repository
 <https://github.com/OpenAstronomy/python-3-for-scientists>`_. Please note that
-our aim is to deliberately avoid making any negative comments about Python 2 or
-Python 2 users, and instead focus on the benefits of updating to Python 3.
+our aim is to deliberately avoid making any negative comments about Python 2,
+and instead focus on the benefits of updating to Python 3.
