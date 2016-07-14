@@ -7,7 +7,9 @@ Division
 
 In Python 2, integer division is the default, so 1/2 evaluates to 0. This means
 frequently having to explicitly convert integers to floats when working with
-integer variables::
+integer variables
+
+.. code-block:: python
 
     >>> int_one = 1
     >>> int_two = 2
@@ -18,7 +20,9 @@ integer variables::
 
 or being careful to do things like ``/ 2.`` or ``* 0.5``. In Python 3, the
 default division will yield a float, and integer division is accessed using the //
-operator::
+operator
+
+.. code-block:: python
 
     >>> int_one / int_two
     0.5
@@ -34,7 +38,9 @@ Recursive glob
 A small but very useful feature in Python 3 is the addition of a recursive
 option in the built-in :func:`~glob.glob` function. In Python 2 and 3, this
 function can be used to find all files and directories matching a certain
-pattern::
+pattern
+
+.. code-block:: python
 
     >>> import os
     >>> import glob
@@ -43,7 +49,9 @@ pattern::
 
 Now let's say that the ``data`` directory now contains FITS files both
 directly in ``data`` and in sub-directories of ``data``. In Python 3, you can
-now do::
+now do
+
+.. code-block:: python
 
     >>> import os
     >>> import glob
@@ -63,7 +71,9 @@ Matrix multiplication operator
 ------------------------------
 
 Since Python 3.5, and Numpy 1.10, it is now possible to use the ``@`` operator
-to do matrix multiplication (vector product)::
+to do matrix multiplication (vector product)
+
+.. code-block:: python
 
     >>> x = np.array([[1, 2], [3, 4]])
     >>> y = np.array([[3, 2], [2, -1]])
@@ -73,6 +83,8 @@ to do matrix multiplication (vector product)::
 
 Note that this is different from ``x * y``, which returns an element-wise
 multiplication of the arrays:
+
+.. code-block:: python
 
     >>> x * y
     array([[ 3,  4],
@@ -91,17 +103,23 @@ By default, ``print()`` behaves like the Python 2 print statement in that it
 separates variables by spaces and goes to the next line at the end of a print
 call:
 
+.. code-block:: python
+
     >>> a, b = 1, 2
     >>> print(a, b)
     1 2
 
 The ``sep`` argument can be used to customize the separator:
 
+.. code-block:: python
+
     >>> print(a, b, sep=', ')
     1, 2
 
 And similarly, the ``end`` argument can be used to customize the end of the line -
 this defaults to ``\n``, which is a carriage return (or *newline*):
+
+.. code-block:: python
 
     >>> print("hello"); print("world")
     hello
@@ -111,7 +129,9 @@ this defaults to ``\n``, which is a carriage return (or *newline*):
 
 In the above example, we had to put the print statements on the same line,
 because in interactive Python, you will be returned to the Python prompt after
-the line is executed. However, in scripts, you can do::
+the line is executed. However, in scripts, you can do
+
+.. code-block:: python
 
     print("hello ", end=' ')
     print("world")
@@ -120,11 +140,15 @@ Finally, a last useful feature is that it is possible to send the output of the
 print calls to file-like objects instead of the main terminal output (the
 *standard output*):
 
+.. code-block:: python
+
     >>> f = open('data.txt', 'w')
     >>> print(a, b, file=f)
     >>> f.close()
 
 or better, if you are familiar with the context manager notation:
+
+.. code-block:: python
 
     >>> with open('data.txt', 'w') as f:
     ...     print(a, b, file=f)
@@ -134,6 +158,8 @@ Advanced unpacking
 
 In Python 2, you can use implicit unpacking of variables to go from a list,
 tuple, or more generally any *iterable* to separate variables:
+
+.. code-block:: python
 
     >>> a, b, c = range(3)
     >>> a
@@ -146,23 +172,31 @@ tuple, or more generally any *iterable* to separate variables:
 The number of items in the iterable on the right has to match exactly the number
 of variables on the left. However, there are cases where one might only be
 interested in the first few items of the iterable. For example, if you have a
-list of 5 items::
+list of 5 items
+
+.. code-block:: python
 
     >>> values = range(10)
 
 and are only interested in the first two, in Python 2 you would need to do
 either:
 
+.. code-block:: python
+
     >>> a, b, _, _, _ = values
 
 or
+
+.. code-block:: python
 
     >>> a = values[0]
     >>> b = values[1]
 
 Python 3 now allows users to use the ``*variable`` syntax (similar to ``*args``
 in function arguments) to avoid having to write out as many variables than items
-in the iterable::
+in the iterable
+
+.. code-block:: python
 
     >>> a, b, *rest = values
     >>> a
@@ -172,7 +206,9 @@ in the iterable::
     >>> rest
     [2, 3, 4]
 
-The ``*`` syntax can also be used for e.g. the first variable and variables in the middle::
+The ``*`` syntax can also be used for e.g. the first variable and variables in the middle
+
+.. code-block:: python
 
     >>> a, *rest, b = range(5)
     >>> a, b
@@ -184,6 +220,8 @@ The ``*`` syntax can also be used for e.g. the first variable and variables in t
 This can be used for example to access the first two lines and the last line
 in a file:
 
+.. code-block:: python
+
     >>> f = open('data.txt')
     >>> first, second, *rest, last = f.readlines()
     >>> f.close()
@@ -194,6 +232,8 @@ Function annotations
 Since Python 3.5, it is possible to use the following syntax to annotate
 functions, to provide information on inputs/outputs. For example, it is possible
 to specify *type* annotations:
+
+.. code-block:: python
 
     >>> def remove_spaces(x: str) -> str:
     ...     return x.replace(' ', '')
@@ -207,6 +247,8 @@ However, some packages have now implemented their own annotations. For example,
 the `Astropy <http://www.astropy.org>`_ package uses these to allow users to
 specify what units different variables should be in:
 
+.. code-block:: python
+
     >>> import astropy.units as u
     >>> @u.quantity_input
     ... def kinetic_energy(mass: u.kg, velocity: u.m / u.s):
@@ -214,12 +256,16 @@ specify what units different variables should be in:
 
 This does then raise an error if the variables do not have units attached:
 
+.. code-block:: python
+
     >>> kinetic_energy(1, 3)
     ...
     TypeError: Argument 'mass' to function 'kinetic_energy' has no 'unit'
     attribute. You may want to pass in an Astropy Quantity instead.
 
 or if the units are not compatible/convertible:
+
+.. code-block:: python
 
     >>> kinetic_energy(1 * u.s, 3 * u.km / u.s)
     ...
@@ -234,12 +280,16 @@ Sensible comparison
 In Python 2, it was possible to compare things that shouldn't really be
 comparable:
 
+.. code-block:: python
+
     >>> '1' > 2
     True
 
 Whether a string was greater than an integer or a float was not necessarily
 predictable or intuitive. In Python 3, this type of comparison is no longer
 allowed:
+
+.. code-block:: python
 
     >>> '1' > 2
     ...
@@ -254,6 +304,8 @@ The upcoming Python 3.6 release will include a new type of strings: f-strings.
 The idea is that when doing string formatting, we can often end up in cases
 that are too verbose such as:
 
+.. code-block:: python
+
     >>> value = 4 * 20
     >>> 'The value is {value}.'.format(value=value)
     'The value is 80.'
@@ -261,17 +313,23 @@ that are too verbose such as:
 or we can end up in situations where the code is unnecessarily complex, since
 ``value`` is detached from where it appears in the string.
 
+.. code-block:: python
+
     >>> 'The value is {}.'.format(value)
     'The value is 80.'
 
 The new `f-strings <https://www.python.org/dev/peps/pep-0498/>`_ allow you to
 use variable names directly inside the curly brackets:
 
+.. code-block:: python
+
     >>> f'The value is {value}.'
     'The value is 80.'
 
 You can actually use full Python expressions inside the curly brackets! For
 instance:
+
+.. code-block:: python
 
     >>> a, b = 10, 20
     >>> f'The sum of the values is {a + b}.'
@@ -282,14 +340,18 @@ Unicode strings
 
 In Python 2, only the basic ASCII character set was available in standard
 strings; to use the much more extensive Unicode set of characters, you had to
-prefix each string with a u::
+prefix each string with a u:
+
+.. code-block:: python
 
     >>> s1 = "an ascii string"
     >>> s2 = u"The total is €10"
 
 Unicode strings are the default in Python 3. This makes it more straightforward
 to e.g., include foreign languages, and print greek symbols (or emoji) in
-strings::
+strings:
+
+.. code-block:: python
 
     >>> s3 = "Πύθων"
     >>> s4 = "unicode strings are great! 😍"
@@ -300,7 +362,9 @@ Unicode variable names
 As with strings, Python 3 allows most unicode symbols to be used in variable
 names. In contrast, Python 2 could only use the basic ASCII character set for
 variable names. This means you can use foreign language words and letter-like
-symbols as variable names, e.g.::
+symbols as variable names, e.g.:
+
+.. code-block:: python
 
     >>> π = 3.14159
     >>> jalapeño = "a hot pepper"
