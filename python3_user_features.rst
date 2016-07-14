@@ -78,6 +78,37 @@ multiplication of the arrays:
     array([[ 3,  4],
            [ 6, -4]])
 
+Clearing lists
+--------------
+
+In Python 2 and 3, dictionaries can easily be emptied using the ``.clear`` method:
+
+    >>> d = {'flux': 1}
+    >>> d.clear()
+    >>> d
+    {}
+
+But Python 2.7 did not allow lists to be cleared in the same way:
+
+    >>> li = ['spam', 'egg', 'spam']
+    >>> li.clear()
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    AttributeError: 'list' object has no attribute 'clear'
+
+instead requiring non-intuitive code such as:
+
+    >>> del li[:]
+    >>> li
+    []
+
+Since Python 3.3, lists can be emptied by using the ``clear`` method:
+
+    >>> li = ['spam', 'egg', 'spam']
+    >>> li.clear()
+    >>> li
+    []
+
 Advanced print function
 -----------------------
 
