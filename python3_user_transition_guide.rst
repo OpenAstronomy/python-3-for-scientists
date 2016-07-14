@@ -15,7 +15,9 @@ Python 3 once you switch. To use these back-ported changes, you must import
 certain utilities from the built-in ```__future__``
 <https://docs.python.org/2/library/__future__.html>`_ package. It is generally
 recommended that, if you are still writing Python 2 compatible code, you should
-import the following four modules in any code you write::
+import the following four modules in any code you write
+
+.. code-block:: python
 
     from __future__ import division, print_function, absolute_import
 
@@ -23,9 +25,13 @@ Copy any paste this into the import block of any new script or piece of code you
 write in Python 2! Most notably, (1) this will enable you to use the Python
 3-style ``print`` function:
 
+.. code-block:: python
+
     >>> print("It's only a model")
 
 The Python 2 print statement will now fail:
+
+.. code-block:: python
 
     >>> print "It's only a model"
       File "<stdin>", line 1
@@ -36,10 +42,14 @@ The Python 2 print statement will now fail:
 
 And (2), integer division will no longer truncate:
 
+.. code-block:: python
+
     >>> 1/2
     0
 
 will become:
+
+.. code-block:: python
 
     >>> 1/2
     0.5
@@ -71,7 +81,9 @@ compatibility between Python 2 and 3, an easy solution is to use the
 
 One other major change is that many built-in methods on container classes (e.g.,
 the dictionary) now return iterators instead of ``list`` s. For example, in
-Python 2::
+Python 2
+
+.. code-block:: python
 
     >>> airspeed = {'ladened': 2, 'unladened': 11}
     >>> airspeed.keys()
@@ -79,7 +91,9 @@ Python 2::
     >>> airspeed.keys()[0]
     'ladened'
 
-In Python 3, the ``.keys()`` method instead returns an iterator object::
+In Python 3, the ``.keys()`` method instead returns an iterator object
+
+.. code-block:: python
 
     >>> airspeed = {'ladened': 2, 'unladened': 11}
     >>> airspeed.keys()
@@ -91,7 +105,9 @@ In Python 3, the ``.keys()`` method instead returns an iterator object::
 
 These iterator objects support iteration (e.g., you can loop over the
 ``dict_keys`` as you would a list), but as shown above, do not support indexing.
-To get a list, just wrap any of these methods in a call to ``list()``, e.g.::
+To get a list, just wrap any of these methods in a call to ``list()``, e.g.
+
+.. code-block:: python
 
     >>> the_keys = list(airspeed.keys())
     >>> the_keys[0]
@@ -108,7 +124,9 @@ place. The `Python documentation has a page
 <https://docs.python.org/2/library/2to3.html>`_ on how to use this tool. For a
 single file, calling ``2to3`` on the file without any flags will output a diff
 showing any invalid code. For example, if we have a script called "test.py"
-containing a single line ``print "yo"``::
+containing a single line ``print "yo"``
+
+.. code-block:: diff
 
     % 2to3 test.py
     --- test.py (original)
@@ -121,7 +139,9 @@ containing a single line ``print "yo"``::
 
 Note that it finds the Python 2-style ``print`` statement and even tells you what
 to change it to, but this did not modify the file to make it compatible. To
-actually fix the incompatible code, call with the ``-w`` flag::
+actually fix the incompatible code, call with the ``-w`` flag
+
+.. code-block:: diff
 
     % 2to3 -w test.py
     --- test.py (original)
@@ -158,11 +178,15 @@ your other environment.
 If you are using Anaconda for Python 2 or have just installed Anaconda, it's
 easy to create a new environment that uses Python 3. If you have never used
 `Anaconda (conda) environments <http://conda.pydata.org/docs/using/envs.html>`_,
-you should have only one environment. If you type::
+you should have only one environment. If you type
+
+.. code-block:: bash
 
     % conda env list
 
-in your terminal, you should see a single line like::
+in your terminal, you should see a single line like
+
+.. code-block:: bash
 
     root                  *   /Users/adrian/anaconda
 
@@ -171,37 +195,51 @@ useful to have two main installations of Python for testing: one that uses the
 latest Python 2 version and one that uses the latest Python 3 version. Here
 we'll create these two environments and name them ``two`` and ``three``. For
 your main Python 2 environment, you can clone your root environment over (and
-therefore copy over any packages you've installed) by doing::
+therefore copy over any packages you've installed) by doing
+
+.. code-block:: bash
 
     % conda create --name two --clone root
 
 If instead you'd like to create a fresh installation of Python 2 in the new
-environment, you can do::
+environment, you can do
+
+.. code-block:: bash
 
     % conda create --name two python=2
 
 (the ``python=2`` tells conda to install the latest version of Python 2 in the
 environment named ``two``). We can do the same thing to create a new environment
-for Python 3::
+for Python 3
+
+.. code-block:: bash
 
     % conda create --name three python=3
 
 Again, the ``python=3`` tells conda to install the latest version of Python 3 in
-this new environment (named ``three``). To enable an environment, you use::
+this new environment (named ``three``). To enable an environment, you use
+
+.. code-block:: bash
 
     % source activate <name of environment>
 
-So, for each of these you can use::
+So, for each of these you can use
+
+.. code-block:: bash
 
     % source activate two
 
-and::
+and
+
+.. code-block:: bash
 
     % source activate three
 
 to switch back and forth between Python 2 and 3! After installing Python 3, you
 may find yourself typing these commands a lot to switch back and forth -- you
-may want to create aliases in your shell profile to make it faster::
+may want to create aliases in your shell profile to make it faster
+
+.. code-block:: bash
 
     % alias pytwo="source activate two"
     % alias pythree="source activate three"
@@ -211,7 +249,9 @@ environment so you can quickly tell whether you are using Python 2 or 3. But,
 by default any new shell you open will use the ``root`` environment. An easy way
 to change this is to activate whichever environment you want to use as default
 in your profile or rc file as well. For example, if you want to move to Python 3
-you can add::
+you can add
+
+.. code-block:: bash
 
     pythree
 
@@ -230,11 +270,15 @@ package is here to help! ``six`` has a subpackage that normalizes the import
 paths for these cases so you don't have to write extra code to check whether the
 code is executed in 2 or 3. For example:
 
-- ``cPickle`` / ``pickle``::
+- ``cPickle`` / ``pickle``
+
+.. code-block:: python
 
     >>> from six.moves import cPickle as pickle
 
-- ``urllib``, ``urllib2``::
+- ``urllib``, ``urllib2``
+
+.. code-block:: python
 
     >>> from six.moves import urllib
 
