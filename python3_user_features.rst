@@ -1,22 +1,6 @@
 Useful Python 3 features for users
 ==================================
 
-Unicode strings
----------------
-
-In Python 2, only the basic ASCII character set was available in standard
-strings; to use the much more extensive Unicode set of characters, you had to
-prefix each string with a u::
-
-    >>> s1 = "an ascii string"
-    >>> s2 = u"The total is €10"
-
-Unicode strings are the default in Python 3. This makes it more straightforward
-to e.g., include foreign languages, and print greek symbols (or emoji) in
-strings::
-
-    >>> s3 = "Πύθων"
-    >>> s4 = "unicode strings are great! 😍"
 
 Division
 --------
@@ -43,22 +27,6 @@ operator::
 
 This makes it safer to use by default, since there there is no longer any
 implicit conversion to integers.
-
-Unicode variable names
-----------------------
-
-As with strings, Python 3 allows most unicode symbols to be used in variable
-names. In contrast, Python 2 could only use the basic ASCII character set for
-variable names. This means you can use foreign language words and letter-like
-symbols as variable names, e.g.::
-
-    >>> π = 3.14159
-    >>> jalapeño = "a hot pepper"
-
-(Sadly, no emoji here!)
-
-Use caution if you're planning to share your code, though, as it's fairly easy
-to produce illegible code this way.
 
 Recursive glob
 --------------
@@ -308,3 +276,36 @@ instance:
     >>> a, b = 10, 20
     >>> f'The sum of the values is {a + b}.'
     'The sum of the values is 30.'
+
+Unicode strings
+---------------
+
+In Python 2, only the basic ASCII character set was available in standard
+strings; to use the much more extensive Unicode set of characters, you had to
+prefix each string with a u::
+
+    >>> s1 = "an ascii string"
+    >>> s2 = u"The total is €10"
+
+Unicode strings are the default in Python 3. This makes it more straightforward
+to e.g., include foreign languages, and print greek symbols (or emoji) in
+strings::
+
+    >>> s3 = "Πύθων"
+    >>> s4 = "unicode strings are great! 😍"
+
+Unicode variable names
+----------------------
+
+As with strings, Python 3 allows most unicode symbols to be used in variable
+names. In contrast, Python 2 could only use the basic ASCII character set for
+variable names. This means you can use foreign language words and letter-like
+symbols as variable names, e.g.::
+
+    >>> π = 3.14159
+    >>> jalapeño = "a hot pepper"
+
+(Sadly, no emoji here!)
+
+Use caution if you're planning to share your code, though, as it's fairly easy
+to produce illegible code this way.
