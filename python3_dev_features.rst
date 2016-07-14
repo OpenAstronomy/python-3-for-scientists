@@ -18,25 +18,33 @@ gnashing of teeth.
 
 To explain this, we need to review the different kinds of parameters that a
 python function can be defined to take. The simplest is a positional
-parameter. The following function has two positional poarameters::
+parameter. The following function has two positional poarameters
+
+.. code-block:: python
 
     def positional_function(foo, bar):
         pass
 
 Positional parameters are the simplest, and default kind of
 parameter. In addition, both Python 2 and 3 also allow keyword arguments. These
-kinds of arguments make it possible to define a default value for a parameter::
+kinds of arguments make it possible to define a default value for a parameter
+
+.. code-block:: python
 
     def keyword_function(foo=3, bar=4)
 
 One can specify the values of positional arguments when calling functions in two
-ways. The following are all valid::
+ways. The following are all valid
+
+.. code-block:: python
 
     positional_function(3, 4)
     positional_function(3, bar=4)
     positional_function(foo=3, bar=4)
 
-However, the following is not valid::
+However, the following is not valid
+
+.. code-block:: python
 
     positional_function(4, foo=3)
 
@@ -45,7 +53,9 @@ that `foo` is getting specified twice. For positional arguments, the *order* of
 the arguments matters.
 
 Just like positional arguments, keyword arguments can be specified using their
-order, or by specifying their names. All of these are valid::
+order, or by specifying their names. All of these are valid
+
+.. code-block:: python
 
     keyword_function(3, 4)
     keyword_function(3, bar=4)
@@ -57,17 +67,23 @@ via the name of the argument, and *cannot* be specified as a positional
 argument.
 
 For example, the following function takes a positional argument and two
-keyword-only arguments::
+keyword-only arguments
+
+.. code-block:: python
 
     def keyword_only_function(parameter, *, option1=False, option2=''):
         pass
 
 In this example, ``option1``, and ``option2`` are only specifiable via the
-keyword argument syntax. The following is valid::
+keyword argument syntax. The following is valid
+
+.. code-block:: python
 
     keyword_only_function(3, option1=True, option2='Hello World!')
 
-But this example will raise an error::
+But this example will raise an error
+
+.. code-block:: python
 
     keyword_only_function(3, True, 'Hello World!')
 
@@ -95,7 +111,9 @@ appropriate information and context. This can be painful, especially when
 debugging a library, as the error message containing information about the *real*
 error will get discarded in favor of a more generic error message.
 
-Take the following short example::
+Take the following short example
+
+.. code-block:: python
 
     my_dict = {'a': 1, 'b': 2}
 
@@ -104,7 +122,9 @@ Take the following short example::
     except KeyError:
         raise RuntimeError("dict access failed")
 
-In Python 3, executing this snippet will print the following::
+In Python 3, executing this snippet will print the following
+
+.. code-block:: python
 
     Traceback (most recent call last):
       File "test.py", line 4, in <module>
@@ -118,7 +138,9 @@ In Python 3, executing this snippet will print the following::
         raise RuntimeError("dict access failed")
     RuntimeError: dict access failed
 
-Under Python 2, you will see a much less useful error message::
+Under Python 2, you will see a much less useful error message
+
+.. code-block:: python
 
     Traceback (most recent call last):
       File "test.py", line 6, in <module>
