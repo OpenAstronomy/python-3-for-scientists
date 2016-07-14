@@ -18,7 +18,7 @@ gnashing of teeth.
 
 To explain this, we need to review the different kinds of parameters that a
 python function can be defined to take. The simplest is a positional
-parameter. The following function has two positional poarameters
+parameter. The following function has two positional parameters
 
 .. code-block:: python
 
