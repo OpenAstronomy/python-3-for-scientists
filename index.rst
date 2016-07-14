@@ -16,6 +16,10 @@ We also include information about Python 3 features that can be useful to
 developers, but we take care to keep this separate this from the main list of
 features that might be useful to typical users.
 
+.. note:: These pages are still a work in progress - we welcome any
+          feedback and/or contributions! See the `Contributing to these pages`_
+          section below for more details!
+
 Contents
 --------
 
