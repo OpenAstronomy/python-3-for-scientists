@@ -431,3 +431,7 @@ Doing this in Python 2 is more complicated:
             # Fallback code...
         else:
             raise  # It was an OSError for something else
+
+Other new exception classes include ``PermissionError``, ``IsADirectoryError``
+and ``TimeoutError``. For more information, `see the Python documentation
+<https://docs.python.org/3/whatsnew/3.3.html#pep-3151-reworking-the-os-and-io-exception-hierarchy>`__.
