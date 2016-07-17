@@ -404,3 +404,34 @@ symbols as variable names, e.g.:
 
 Use caution if you're planning to share your code, though, as it's fairly easy
 to produce illegible code this way.
+
+More useful exceptions
+----------------------
+
+Python 3 makes some error cases easier to catch. For example, to open a file
+and catch the error if it's not there:
+
+.. code-block:: python
+
+    try:
+        f = open('is_it_there.txt')
+    except FileNotFoundError:
+        # Fallback code...
+
+Doing this in Python 2 is more complicated:
+
+.. code-block:: python
+
+    import errno
+
+    try:
+        f = open('is_it_there.txt')
+    except OSError as e:
+        if e.errno == errno.ENOENT:
+            # Fallback code...
+        else:
+            raise  # It was an OSError for something else
+
+Other new exception classes include ``PermissionError``, ``IsADirectoryError``
+and ``TimeoutError``. For more information, `see the Python documentation
+<https://docs.python.org/3/whatsnew/3.3.html#pep-3151-reworking-the-os-and-io-exception-hierarchy>`__.
