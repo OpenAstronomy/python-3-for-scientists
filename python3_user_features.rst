@@ -207,7 +207,7 @@ list of 5 items
 
 .. code-block:: python
 
-    >>> values = range(10)
+    >>> values = range(5)
 
 and are only interested in the first two, in Python 2 you would need to do
 either:
