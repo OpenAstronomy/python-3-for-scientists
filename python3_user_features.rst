@@ -391,8 +391,8 @@ Unicode variable names
 ----------------------
 
 Python 3 allows many unicode symbols to be used in variable names. Unlike Julia
-or swift, which allow any unicode symbol to represent a variable (including
-emoji) python restricts variable names to unicode characters that represent
+or Swift, which allow any unicode symbol to represent a variable (including
+emoji) Python 3 restricts variable names to unicode characters that represent
 characters in written languages. In contrast, Python 2 could only use the basic
 ASCII character set for variable names. 
 
@@ -405,7 +405,15 @@ variable names, e.g.:
     >>> jalapeño = "a hot pepper"
     >>> ラーメン = "delicious"
 
-(Sadly, no emoji here!).
+But cannot use, say, emoji:
+
+.. code-block:: python
+
+    >>> ☃ = "brrr!"
+      File "<stdin>", line 1
+        ☃ = "brrr!"
+        ^
+    SyntaxError: invalid character in identifier
 
 Use caution if you're planning to share your code, though, as it's fairly easy
 to produce illegible code this way.
