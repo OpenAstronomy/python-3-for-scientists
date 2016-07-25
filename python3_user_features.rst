@@ -415,9 +415,7 @@ But cannot use, say, emoji:
         ^
     SyntaxError: invalid character in identifier
 
-Use caution if you're planning to share your code, though, as it's fairly easy
-to produce illegible code this way. One nice use case is for mathematical
-notation:
+One nice use case is for mathematical notation:
 
 .. code-block:: python
 
@@ -432,7 +430,8 @@ notation:
 Using unicode variable names like this can make it easier to read complicated
 mathematical expressions and compare with the printed definition. Be careful not
 to expose unicode variable names in your project's API, as it might be difficult
-for others to type these characters.
+for others to type these characters. Also, use caution if you're planning to
+share your code, though, as it's fairly easy to produce illegible code this way.
 
 More useful exceptions
 ----------------------
