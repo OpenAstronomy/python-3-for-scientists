@@ -416,7 +416,23 @@ But cannot use, say, emoji:
     SyntaxError: invalid character in identifier
 
 Use caution if you're planning to share your code, though, as it's fairly easy
-to produce illegible code this way.
+to produce illegible code this way. One nice use case is for mathematical
+notation:
+
+.. code-block:: python
+
+   >>> from numpy import array, cos, sin
+   >>> def rotate(vector, angle):
+   ...     θ = angle
+   ...     mat = [[cos(θ), -sin(θ)],
+   ...            [sin(θ), cos(θ)]]
+   ...     mat = array(mat)
+   ...     return mat @ vector
+
+Using unicode variable names like this can make it easier to read complicated
+mathematical expressions and compare with the printed definition. Be careful not
+to expose unicode variable names in your project's API, as it might be difficult
+for others to type these characters.
 
 More useful exceptions
 ----------------------
