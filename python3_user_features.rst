@@ -390,17 +390,22 @@ strings:
 Unicode variable names
 ----------------------
 
-As with strings, Python 3 allows most unicode symbols to be used in variable
-names. In contrast, Python 2 could only use the basic ASCII character set for
-variable names. This means you can use foreign language words and letter-like
-symbols as variable names, e.g.:
+Python 3 allows many unicode symbols to be used in variable names. Unlike Julia
+or swift, which allow any unicode symbol to represent a variable (including
+emoji) python restricts variable names to unicode characters that represent
+characters in written languages. In contrast, Python 2 could only use the basic
+ASCII character set for variable names. 
+
+This means you can use foreign language words and letter-like symbols as
+variable names, e.g.:
 
 .. code-block:: python
 
     >>> π = 3.14159
     >>> jalapeño = "a hot pepper"
+    >>> ラーメン = "delicious"
 
-(Sadly, no emoji here!)
+(Sadly, no emoji here!).
 
 Use caution if you're planning to share your code, though, as it's fairly easy
 to produce illegible code this way.
