@@ -390,20 +390,48 @@ strings:
 Unicode variable names
 ----------------------
 
-As with strings, Python 3 allows most unicode symbols to be used in variable
-names. In contrast, Python 2 could only use the basic ASCII character set for
-variable names. This means you can use foreign language words and letter-like
-symbols as variable names, e.g.:
+Python 3 allows many unicode symbols to be used in variable names. Unlike Julia
+or Swift, which allow any unicode symbol to represent a variable (including
+emoji) Python 3 restricts variable names to unicode characters that represent
+characters in written languages. In contrast, Python 2 could only use the basic
+ASCII character set for variable names. 
+
+This means you can use foreign language words and letter-like symbols as
+variable names, e.g.:
 
 .. code-block:: python
 
     >>> π = 3.14159
     >>> jalapeño = "a hot pepper"
+    >>> ラーメン = "delicious"
 
-(Sadly, no emoji here!)
+But cannot use, say, emoji:
 
-Use caution if you're planning to share your code, though, as it's fairly easy
-to produce illegible code this way.
+.. code-block:: python
+
+    >>> ☃ = "brrr!"
+      File "<stdin>", line 1
+        ☃ = "brrr!"
+        ^
+    SyntaxError: invalid character in identifier
+
+One nice use case is for mathematical notation:
+
+.. code-block:: python
+
+   >>> from numpy import array, cos, sin
+   >>> def rotate(vector, angle):
+   ...     θ = angle
+   ...     mat = [[cos(θ), -sin(θ)],
+   ...            [sin(θ), cos(θ)]]
+   ...     mat = array(mat)
+   ...     return mat @ vector
+
+Using unicode variable names like this can make it easier to read complicated
+mathematical expressions and compare with the printed definition. Be careful not
+to expose unicode variable names in your project's API, as it might be difficult
+for others to type these characters. Also, use caution if you're planning to
+share your code as it's fairly easy to produce illegible code this way.
 
 More useful exceptions
 ----------------------
