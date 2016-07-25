@@ -431,7 +431,7 @@ Using unicode variable names like this can make it easier to read complicated
 mathematical expressions and compare with the printed definition. Be careful not
 to expose unicode variable names in your project's API, as it might be difficult
 for others to type these characters. Also, use caution if you're planning to
-share your code, though, as it's fairly easy to produce illegible code this way.
+share your code as it's fairly easy to produce illegible code this way.
 
 More useful exceptions
 ----------------------
