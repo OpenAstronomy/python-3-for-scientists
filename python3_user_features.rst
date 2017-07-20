@@ -450,14 +450,14 @@ Have you ever had issues figuring out whether 100000000 is a hundred million or
 a billion? In Python 3.6, you can now add underscores anywhere in an integer,
 which allows you to do e.g.:
 
-.. doctest:: fstring
+.. doctest:: underscores
    :pyversion: >= 3.6
 
     >>> a = 1_000_000_000
 
 This also works with hexadecimal and binary literals, e.g.
 
-.. doctest:: fstring
+.. doctest:: underscores
    :pyversion: >= 3.6
 
     >>> b = 0b_0011_1111_0100_1110
