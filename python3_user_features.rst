@@ -443,8 +443,8 @@ instance:
     >>> f'The sum of the values is {a + b}.'
     'The sum of the values is 30.'
 
-Underscores in numers
----------------------
+Underscores in numbers
+----------------------
 
 Have you ever had issues figuring out whether 100000000 is a hundred million or
 a billion? In Python 3.6, you can now add underscores anywhere in an integer,
