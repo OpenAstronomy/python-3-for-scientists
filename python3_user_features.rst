@@ -9,7 +9,8 @@ In Python 2, integer division is the default, so 1/2 evaluates to 0. This means
 frequently having to explicitly convert integers to floats when working with
 integer variables
 
-.. code-block:: python
+.. doctest::
+   :pyversion: < 3
 
     >>> int_one = 1
     >>> int_two = 2
@@ -22,7 +23,15 @@ or being careful to do things like ``/ 2.`` or ``* 0.5``. In Python 3, the
 default division will yield a float, and integer division is accessed using the //
 operator
 
-.. code-block:: python
+.. doctest:: division3
+   :pyversion: >= 3.0
+   :hide:
+
+    >>> int_one = 1
+    >>> int_two = 2
+
+.. doctest:: division3
+   :pyversion: >= 3.0
 
     >>> int_one / int_two
     0.5
@@ -40,7 +49,22 @@ option in the built-in :func:`~glob.glob` function. In Python 2 and 3, this
 function can be used to find all files and directories matching a certain
 pattern
 
-.. code-block:: python
+.. doctest:: glob
+   :pyversion: >= 3.5
+   :hide:
+
+    >>> import os
+    >>> os.makedirs(os.path.join('data', 'subset1'), exist_ok=True)
+    >>> os.makedirs(os.path.join('data', 'subset2'), exist_ok=True)
+    >>> _ = open(os.path.join('data', 'image.fits'), 'w').write('i')
+    >>> _ = open(os.path.join('data', 'subset1', 'a.fits'), 'w').write('a')
+    >>> _ = open(os.path.join('data', 'subset1', 'b.fits'), 'w').write('b')
+    >>> _ = open(os.path.join('data', 'subset1', 'c.fits'), 'w').write('c')
+    >>> _ = open(os.path.join('data', 'subset2', 'd.fits'), 'w').write('d')
+    >>> _ = open(os.path.join('data', 'subset2', 'e.fits'), 'w').write('e')
+
+.. doctest:: glob
+   :pyversion: >= 3.5
 
     >>> import os
     >>> import glob
@@ -51,12 +75,14 @@ Now let's say that the ``data`` directory now contains FITS files both
 directly in ``data`` and in sub-directories of ``data``. In Python 3, you can
 now do
 
-.. code-block:: python
+.. doctest:: glob
+   :pyversion: >= 3.5
+   :options: +NORMALIZE_WHITESPACE
 
     >>> import os
     >>> import glob
     >>> glob.glob(os.path.join('data', '**', '*.fits'), recursive=True)
-    ['data/image1.fits', 'data/subset1/a.fits', 'data/subset1/b.fits',
+    ['data/image.fits', 'data/subset1/a.fits', 'data/subset1/b.fits',
      'data/subset1/c.fits', 'data/subset2/d.fits', 'data/subset2/e.fits']
 
 The ``**`` is used to indicate the point in the path at which to look for
@@ -73,8 +99,10 @@ Matrix multiplication operator
 Since Python 3.5, and Numpy 1.10, it is now possible to use the ``@`` operator
 to do matrix multiplication (vector product)
 
-.. code-block:: python
+.. doctest:: matrix
+   :pyversion: >= 3.5
 
+    >>> import numpy as np
     >>> x = np.array([[1, 2], [3, 4]])
     >>> y = np.array([[3, 2], [2, -1]])
     >>> x @ y
@@ -84,7 +112,8 @@ to do matrix multiplication (vector product)
 Note that this is different from ``x * y``, which returns an element-wise
 multiplication of the arrays:
 
-.. code-block:: python
+.. doctest:: matrix
+   :pyversion: >= 3.5
 
     >>> x * y
     array([[ 3,  4],
@@ -95,6 +124,9 @@ Clearing lists
 
 In Python 2 and 3, dictionaries can easily be emptied using the ``.clear`` method:
 
+.. doctest:: clear
+   :pyversion: >= 3.3
+
     >>> d = {'flux': 1}
     >>> d.clear()
     >>> d
@@ -102,19 +134,29 @@ In Python 2 and 3, dictionaries can easily be emptied using the ``.clear`` metho
 
 But Python 2.7 did not allow lists to be cleared in the same way:
 
+.. doctest:: clear
+   :pyversion: < 3
+   :options: +ELLIPSIS
+
     >>> li = ['spam', 'egg', 'spam']
     >>> li.clear()
     Traceback (most recent call last):
-      File "<stdin>", line 1, in <module>
+    ...
     AttributeError: 'list' object has no attribute 'clear'
 
 instead requiring non-intuitive code such as:
+
+.. doctest:: clear
+   :pyversion: < 3
 
     >>> del li[:]
     >>> li
     []
 
 Since Python 3.3, lists can be emptied by using the ``clear`` method:
+
+.. doctest:: clear
+   :pyversion: >= 3.3
 
     >>> li = ['spam', 'egg', 'spam']
     >>> li.clear()
@@ -134,7 +176,8 @@ By default, ``print()`` behaves like the Python 2 print statement in that it
 separates variables by spaces and goes to the next line at the end of a print
 call:
 
-.. code-block:: python
+.. doctest:: print
+   :pyversion: >= 3.0
 
     >>> a, b = 1, 2
     >>> print(a, b)
@@ -142,7 +185,8 @@ call:
 
 The ``sep`` argument can be used to customize the separator:
 
-.. code-block:: python
+.. doctest:: print
+   :pyversion: >= 3.0
 
     >>> print(a, b, sep=', ')
     1, 2
@@ -150,7 +194,8 @@ The ``sep`` argument can be used to customize the separator:
 And similarly, the ``end`` argument can be used to customize the end of the line -
 this defaults to ``\n``, which is a carriage return (or *newline*):
 
-.. code-block:: python
+.. doctest:: print
+   :pyversion: >= 3.0
 
     >>> print("hello"); print("world")
     hello
@@ -162,7 +207,8 @@ In the above example, we had to put the print statements on the same line,
 because in interactive Python, you will be returned to the Python prompt after
 the line is executed. However, in scripts, you can do
 
-.. code-block:: python
+.. doctest:: print
+   :pyversion: >= 3.0
 
     print("hello ", end=' ')
     print("world")
@@ -171,7 +217,8 @@ Finally, a last useful feature is that it is possible to send the output of the
 print calls to file-like objects instead of the main terminal output (the
 *standard output*):
 
-.. code-block:: python
+.. doctest:: print
+   :pyversion: >= 3.0
 
     >>> f = open('data.txt', 'w')
     >>> print(a, b, file=f)
@@ -179,7 +226,8 @@ print calls to file-like objects instead of the main terminal output (the
 
 or better, if you are familiar with the context manager notation:
 
-.. code-block:: python
+.. doctest:: print
+   :pyversion: >= 3.0
 
     >>> with open('data.txt', 'w') as f:
     ...     print(a, b, file=f)
@@ -190,7 +238,8 @@ Advanced unpacking
 In Python 2, you can use implicit unpacking of variables to go from a list,
 tuple, or more generally any *iterable* to separate variables:
 
-.. code-block:: python
+.. doctest:: unpacking
+   :pyversion: >= 3.0
 
     >>> a, b, c = range(3)
     >>> a
@@ -205,20 +254,23 @@ of variables on the left. However, there are cases where one might only be
 interested in the first few items of the iterable. For example, if you have a
 list of 5 items
 
-.. code-block:: python
+.. doctest:: unpacking
+   :pyversion: >= 3.0
 
     >>> values = range(5)
 
 and are only interested in the first two, in Python 2 you would need to do
 either:
 
-.. code-block:: python
+.. doctest:: unpacking
+   :pyversion: >= 3.0
 
     >>> a, b, _, _, _ = values
 
 or
 
-.. code-block:: python
+.. doctest:: unpacking
+   :pyversion: >= 3.0
 
     >>> a = values[0]
     >>> b = values[1]
@@ -227,7 +279,8 @@ Python 3 now allows users to use the ``*variable`` syntax (similar to ``*args``
 in function arguments) to avoid having to write out as many variables than items
 in the iterable
 
-.. code-block:: python
+.. doctest:: unpacking
+   :pyversion: >= 3.0
 
     >>> a, b, *rest = values
     >>> a
@@ -239,7 +292,8 @@ in the iterable
 
 The ``*`` syntax can also be used for e.g. the first variable and variables in the middle
 
-.. code-block:: python
+.. doctest:: unpacking
+   :pyversion: >= 3.0
 
     >>> a, *rest, b = range(5)
     >>> a, b
@@ -251,7 +305,14 @@ The ``*`` syntax can also be used for e.g. the first variable and variables in t
 This can be used for example to access the first two lines and the last line
 in a file:
 
-.. code-block:: python
+.. doctest:: unpacking
+   :pyversion: >= 3.0
+   :hide:
+
+   >>> _ = open('data.txt', 'w').write('\n'.join('a' for i in range(10)))
+
+.. doctest:: unpacking
+   :pyversion: >= 3.0
 
     >>> f = open('data.txt')
     >>> first, second, *rest, last = f.readlines()
@@ -264,7 +325,8 @@ Since Python 3.5, it is possible to use the following syntax to annotate
 functions, to provide information on inputs/outputs. For example, it is possible
 to specify *type* annotations:
 
-.. code-block:: python
+.. doctest:: annotations
+   :pyversion: >= 3.5
 
     >>> def remove_spaces(x: str) -> str:
     ...     return x.replace(' ', '')
@@ -278,7 +340,8 @@ However, some packages have now implemented their own annotations. For example,
 the `Astropy <http://www.astropy.org>`_ package uses these to allow users to
 specify what units different variables should be in:
 
-.. code-block:: python
+.. doctest:: annotations
+   :pyversion: >= 3.5
 
     >>> import astropy.units as u
     >>> @u.quantity_input
@@ -287,18 +350,24 @@ specify what units different variables should be in:
 
 This does then raise an error if the variables do not have units attached:
 
-.. code-block:: python
+.. doctest:: annotations
+   :pyversion: >= 3.5
+   :options: +ELLIPSIS +IGNORE_EXCEPTION_DETAIL
 
     >>> kinetic_energy(1, 3)
+    Traceback (most recent call last):
     ...
     TypeError: Argument 'mass' to function 'kinetic_energy' has no 'unit'
     attribute. You may want to pass in an Astropy Quantity instead.
 
 or if the units are not compatible/convertible:
 
-.. code-block:: python
+.. doctest:: annotations
+   :pyversion: >= 3.5
+   :options: +ELLIPSIS +IGNORE_EXCEPTION_DETAIL
 
     >>> kinetic_energy(1 * u.s, 3 * u.km / u.s)
+    Traceback (most recent call last):
     ...
     UnitsError: Argument 'mass' to function 'kinetic_energy' must be in
     units convertible to 'kg'.
@@ -311,7 +380,8 @@ Sensible comparison
 In Python 2, it was possible to compare things that shouldn't really be
 comparable:
 
-.. code-block:: python
+.. doctest:: comparison
+   :pyversion: < 3
 
     >>> '1' > 2
     True
@@ -320,11 +390,14 @@ Whether a string was greater than an integer or a float was not necessarily
 predictable or intuitive. In Python 3, this type of comparison is no longer
 allowed:
 
-.. code-block:: python
+.. doctest:: comparison
+   :pyversion: >= 3
+   :options: +ELLIPSIS
 
     >>> '1' > 2
+    Traceback (most recent call last):
     ...
-    TypeError: unorderable types: str() > int()
+    TypeError: '>' not supported between instances of 'str' and 'int'
 
 This should avoid quite a few bugs!
 
@@ -335,7 +408,8 @@ Python 3.6 includes a new type of strings: f-strings. The idea is that when
 doing string formatting, we can often end up in cases that are too verbose such
 as:
 
-.. code-block:: python
+.. doctest:: fstring
+   :pyversion: >= 2.7
 
     >>> value = 4 * 20
     >>> 'The value is {value}.'.format(value=value)
@@ -344,7 +418,8 @@ as:
 or we can end up in situations where the code is unnecessarily complex, since
 ``value`` is detached from where it appears in the string.
 
-.. code-block:: python
+.. doctest:: fstring
+   :pyversion: >= 2.7
 
     >>> 'The value is {}.'.format(value)
     'The value is 80.'
@@ -352,7 +427,8 @@ or we can end up in situations where the code is unnecessarily complex, since
 The new `f-strings <https://www.python.org/dev/peps/pep-0498/>`_ allow you to
 use variable names directly inside the curly brackets:
 
-.. code-block:: python
+.. doctest:: fstring
+   :pyversion: >= 3.6
 
     >>> f'The value is {value}.'
     'The value is 80.'
@@ -360,7 +436,8 @@ use variable names directly inside the curly brackets:
 You can actually use full Python expressions inside the curly brackets! For
 instance:
 
-.. code-block:: python
+.. doctest:: fstring
+   :pyversion: >= 3.6
 
     >>> a, b = 10, 20
     >>> f'The sum of the values is {a + b}.'
@@ -373,9 +450,15 @@ Have you ever had issues figuring out whether 100000000 is a hundred million or
 a billion? In Python 3.6, you can now add underscores anywhere in an integer,
 which allows you to do e.g.:
 
+.. doctest:: fstring
+   :pyversion: >= 3.6
+
     >>> a = 1_000_000_000
 
 This also works with hexadecimal and binary literals, e.g.
+
+.. doctest:: fstring
+   :pyversion: >= 3.6
 
     >>> b = 0b_0011_1111_0100_1110
 
@@ -386,7 +469,8 @@ In Python 2, only the basic ASCII character set was available in standard
 strings; to use the much more extensive Unicode set of characters, you had to
 prefix each string with a u:
 
-.. code-block:: python
+.. doctest:: unicode
+   :pyversion: < 3
 
     >>> s1 = "an ascii string"
     >>> s2 = u"The total is €10"
@@ -395,7 +479,8 @@ Unicode strings are the default in Python 3. This makes it more straightforward
 to e.g., include foreign languages, and print greek symbols (or emoji) in
 strings:
 
-.. code-block:: python
+.. doctest:: unicode
+   :pyversion: >= 3.0
 
     >>> s3 = "Πύθων"
     >>> s4 = "unicode strings are great! 😍"
@@ -412,7 +497,8 @@ ASCII character set for variable names.
 This means you can use foreign language words and letter-like symbols as
 variable names, e.g.:
 
-.. code-block:: python
+.. doctest:: unicodevar
+   :pyversion: >= 3.0
 
     >>> π = 3.14159
     >>> jalapeño = "a hot pepper"
@@ -420,17 +506,19 @@ variable names, e.g.:
 
 But cannot use, say, emoji:
 
-.. code-block:: python
+.. doctest:: unicodevar
+   :pyversion: >= 3.0
+   :options: +ELLIPSIS
 
     >>> ☃ = "brrr!"
-      File "<stdin>", line 1
-        ☃ = "brrr!"
-        ^
+    Traceback (most recent call last):
+    ...
     SyntaxError: invalid character in identifier
 
 One nice use case is for mathematical notation:
 
-.. code-block:: python
+.. doctest:: unicodevar
+   :pyversion: >= 3.0
 
    >>> from numpy import array, cos, sin
    >>> def rotate(vector, angle):
@@ -452,7 +540,8 @@ More useful exceptions
 Python 3 makes some error cases easier to catch. For example, to open a file
 and catch the error if it's not there:
 
-.. code-block:: python
+.. doctest:: exceptions
+   :pyversion: >= 3.0
 
     try:
         f = open('is_it_there.txt')
@@ -461,7 +550,8 @@ and catch the error if it's not there:
 
 Doing this in Python 2 is more complicated:
 
-.. code-block:: python
+.. doctest:: exceptions
+   :pyversion: >= 2.7
 
     import errno
 
