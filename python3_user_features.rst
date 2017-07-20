@@ -331,9 +331,9 @@ This should avoid quite a few bugs!
 String interpolation
 --------------------
 
-The upcoming Python 3.6 release will include a new type of strings: f-strings.
-The idea is that when doing string formatting, we can often end up in cases
-that are too verbose such as:
+Python 3.6 includes a new type of strings: f-strings. The idea is that when
+doing string formatting, we can often end up in cases that are too verbose such
+as:
 
 .. code-block:: python
 
@@ -366,6 +366,19 @@ instance:
     >>> f'The sum of the values is {a + b}.'
     'The sum of the values is 30.'
 
+Underscores in numers
+---------------------
+
+Have you ever had issues figuring out whether 100000000 is a hundred million or
+a billion? In Python 3.6, you can now add underscores anywhere in an integer,
+which allows you to do e.g.:
+
+    >>> a = 1_000_000_000
+
+This also works with hexadecimal and binary literals, e.g.
+
+    >>> b = 0b_0011_1111_0100_1110
+
 Unicode strings
 ---------------
 
@@ -394,7 +407,7 @@ Python 3 allows many unicode symbols to be used in variable names. Unlike Julia
 or Swift, which allow any unicode symbol to represent a variable (including
 emoji) Python 3 restricts variable names to unicode characters that represent
 characters in written languages. In contrast, Python 2 could only use the basic
-ASCII character set for variable names. 
+ASCII character set for variable names.
 
 This means you can use foreign language words and letter-like symbols as
 variable names, e.g.:
