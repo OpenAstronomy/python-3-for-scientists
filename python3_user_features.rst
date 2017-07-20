@@ -518,7 +518,7 @@ But cannot use, say, emoji:
 One nice use case is for mathematical notation:
 
 .. doctest:: unicodevar
-   :pyversion: >= 3.0
+   :pyversion: >= 3.5
 
    >>> from numpy import array, cos, sin
    >>> def rotate(vector, angle):
