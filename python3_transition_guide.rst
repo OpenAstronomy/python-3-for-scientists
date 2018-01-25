@@ -12,7 +12,7 @@ you can take towards switching. Thankfully, the most disruptive changes to the
 language have been back-ported to Python 2 so you can ensure that, when writing
 new code that you intend to execute with Python 2, it will be executable in
 Python 3 once you switch. To use these back-ported changes, you must import
-certain utilities from the built-in ```__future__``
+certain utilities from the built-in `__future__
 <https://docs.python.org/2/library/__future__.html>`_ package. It is generally
 recommended that, if you are still writing Python 2 compatible code, you should
 import the following four modules in any code you write
