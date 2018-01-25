@@ -58,7 +58,7 @@ For now, don't worry about `absolute_import` (but do include it in your
 import!). If you'd like to know more, `this is a good blog post <https://blog.ta
 nkywoo.com/python/2013/10/07/python-relative-and-absolute-import.html>`_ that
 explains what this does. If you want to know even more, here is a `StackOverflow
-post <http://stackoverflow.com/questions/33743880/what-does-from-future-import-a
+post <https://stackoverflow.com/questions/33743880/what-does-from-future-import-a
 bsolute-import-actually-do>`_ about it.
 
 Other major changes in Python 3
@@ -177,7 +177,7 @@ your other environment.
 
 If you are using Anaconda for Python 2 or have just installed Anaconda, it's
 easy to create a new environment that uses Python 3. If you have never used
-`Anaconda (conda) environments <http://conda.pydata.org/docs/using/envs.html>`_,
+`Anaconda (conda) environments <https://conda.io/docs/using/envs.html>`_,
 you should have only one environment. If you type
 
 .. code-block:: bash

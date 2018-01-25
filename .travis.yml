@@ -12,5 +12,6 @@ install:
   - pip install sphinx astropy
 
 script:
+  - make linkcheck
   - make doctest
   - sphinx-build -W . _build
