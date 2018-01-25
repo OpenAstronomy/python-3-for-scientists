@@ -1,5 +1,5 @@
-Useful Python 3 features for users
-==================================
+Useful Python 3 features
+========================
 
 
 Division
@@ -167,12 +167,12 @@ Advanced print function
 -----------------------
 
 One of the widely known changes between Python 2 and Python 3 is the change
-from a ``print`` statement to a ``print`` function. This change is not just
+from a ``print`` statement to a :func:`print` function. This change is not just
 esthetic, it now allows you to better customize aspects such as what separator
 to use between variables, and whether to go to the next line between successive
 print statements.
 
-By default, ``print()`` behaves like the Python 2 print statement in that it
+By default, :func:`print` behaves like the Python 2 print statement in that it
 separates variables by spaces and goes to the next line at the end of a print
 call:
 
