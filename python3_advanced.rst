@@ -1,5 +1,5 @@
-Useful Python 3 features for developers
-=======================================
+Useful Python 3 features (advanced)
+===================================
 
 Keyword-only Arguments
 ----------------------

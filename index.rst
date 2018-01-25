@@ -12,13 +12,9 @@ scientists for everyday work, as well as information about things you can do
 right now to prepare for the Python 3 transition, and how to try Python 3
 (without necessarily switching over completely).
 
-We also include information about Python 3 features that can be useful to
-developers, but we take care to keep this separate this from the main list of
-features that might be useful to typical users.
-
-.. note:: These pages are still a work in progress - we welcome any
-          feedback and/or contributions! See the `Contributing to these pages`_
-          section below for more details!
+These pages are still a work in progress - we welcome any feedback and/or
+contributions! See the `Contributing to these pages`_ section below for more
+details!
 
 Contents
 --------
@@ -26,10 +22,9 @@ Contents
 .. toctree::
    :maxdepth: 2
 
-   python3_user_features
-   python3_dev_features
-   python3_user_transition_guide
-   python3_dev_transition_guide
+   python3_features
+   python3_advanced
+   python3_transition_guide
 
 Contributing to these pages
 ---------------------------
