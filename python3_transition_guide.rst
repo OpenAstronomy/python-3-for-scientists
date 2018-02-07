@@ -193,31 +193,31 @@ in your terminal, you should see a single line like
 This just tells you that you only have a single ('root') environment. It can be
 useful to have two main installations of Python for testing: one that uses the
 latest Python 2 version and one that uses the latest Python 3 version. Here
-we'll create these two environments and name them ``two`` and ``three``. For
+we'll create these two environments and name them ``py27`` and ``py36``. For
 your main Python 2 environment, you can clone your root environment over (and
 therefore copy over any packages you've installed) by doing
 
 .. code-block:: bash
 
-    % conda create --name two --clone root
+    % conda create --name py27 --clone root
 
 If instead you'd like to create a fresh installation of Python 2 in the new
 environment, you can do
 
 .. code-block:: bash
 
-    % conda create --name two python=2
+    % conda create --name py27 python=2.7
 
-(the ``python=2`` tells conda to install the latest version of Python 2 in the
-environment named ``two``). We can do the same thing to create a new environment
+(the ``python=2.7`` tells conda to install the latest version of Python 2 in the
+environment named ``py27``). We can do the same thing to create a new environment
 for Python 3
 
 .. code-block:: bash
 
-    % conda create --name three python=3
+    % conda create --name py36 python=3.6
 
-Again, the ``python=3`` tells conda to install the latest version of Python 3 in
-this new environment (named ``three``). To enable an environment, you use
+Again, the ``python=3.6`` tells conda to install the latest version of Python 3 in
+this new environment (named ``py36``). To enable an environment, you use
 
 .. code-block:: bash
 
@@ -227,13 +227,13 @@ So, for each of these you can use
 
 .. code-block:: bash
 
-    % source activate two
+    % source activate py27
 
 and
 
 .. code-block:: bash
 
-    % source activate three
+    % source activate py36
 
 to switch back and forth between Python 2 and 3! After installing Python 3, you
 may find yourself typing these commands a lot to switch back and forth -- you
@@ -241,8 +241,8 @@ may want to create aliases in your shell profile to make it faster
 
 .. code-block:: bash
 
-    % alias pytwo="source activate two"
-    % alias pythree="source activate three"
+    % alias activate_py27="source activate py27"
+    % alias activate_py36="source activate py36"
 
 Once these two environments are set up, you may want to stop using the root
 environment so you can quickly tell whether you are using Python 2 or 3. But,
@@ -253,9 +253,9 @@ you can add
 
 .. code-block:: bash
 
-    pythree
+    activate_py36
 
-below the definition of your alias, which will call ``source activate three``
+below the definition of your alias, which will call ``source activate py36``
 whenever the profile or rc file is run.
 
 .. _maintain-compatibility:
