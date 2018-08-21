@@ -104,7 +104,7 @@ manipulation needs.  In short it basically replaces :func:`os.makedirs`, :func:`
 in one fell swoop.
 
 One of the nicest features is file path concatenation, replacing the
-cumbersome :func:`os.path.join` with the much-more elegant:
+cumbersome :func:`os.path.join` with the elegant:
 
 .. doctest:: path
    :pyversion >= 3.4
