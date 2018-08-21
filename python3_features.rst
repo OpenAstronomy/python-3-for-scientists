@@ -92,6 +92,30 @@ correctly interpret the ``**``.
 .. note:: We use ``os.path.join`` instead of writing out the path
           by hand (e.g. ``data/*.fits``) to make sure that this works on
           Windows as well as Linux and MacOS X.
+          
+File path manipulation
+----------------------
+
+The Python 3 standard library includes the
+`pathlib <https://docs.python.org/3/library/pathlib.html>`_ library which
+provides the :func:`~pathlib.Path` object to fulfill all your path
+manipulation needs.  In short it basically replaces :func:`os.makedirs`, :func:`os.mkdir`,
+`os.path <https://docs.python.org/3/library/os.path.html>`_, and :func:`glob.glob`
+in one fell swoop.
+
+One of the nicest features is file path concatenation, replacing the
+cumbersome :func:`os.path.join` with the much-more elegant:
+
+.. doctest:: path
+   :pyversion >= 3.4
+   
+   >>> from pathlib import Path
+   >>> usr = Path('/usr')
+   >>> config = usr / '.config' / 'pep8'
+   >>> str(config)
+   '/usr/.config/pep8'
+   >>> config.name
+   'pep8'
 
 Matrix multiplication operator
 ------------------------------
