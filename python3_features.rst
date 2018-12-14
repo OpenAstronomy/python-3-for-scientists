@@ -81,7 +81,9 @@ now do
 
     >>> import os
     >>> import glob
-    >>> glob.glob(os.path.join('data', '**', '*.fits'), recursive=True)
+    >>> results = glob.glob(
+    ...     os.path.join('data', '**', '*.fits'), recursive=True)
+    >>> sorted(results)
     ['data/image.fits', 'data/subset1/a.fits', 'data/subset1/b.fits',
      'data/subset1/c.fits', 'data/subset2/d.fits', 'data/subset2/e.fits']
 
