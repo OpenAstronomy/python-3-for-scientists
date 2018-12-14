@@ -520,13 +520,13 @@ One nice use case is for mathematical notation:
 .. doctest:: unicodevar
    :pyversion: >= 3.5
 
-   >>> from numpy import array, cos, sin
-   >>> def rotate(vector, angle):
-   ...     θ = angle
-   ...     mat = [[cos(θ), -sin(θ)],
-   ...            [sin(θ), cos(θ)]]
-   ...     mat = array(mat)
-   ...     return mat @ vector
+   from numpy import array, cos, sin
+   def rotate(vector, angle):
+        θ = angle
+        mat = [[cos(θ), -sin(θ)],
+               [sin(θ), cos(θ)]]
+        mat = array(mat)
+        return mat @ vector
 
 Using unicode variable names like this can make it easier to read complicated
 mathematical expressions and compare with the printed definition. Be careful not
