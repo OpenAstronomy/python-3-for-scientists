@@ -107,7 +107,7 @@ One of the nicest features is file path concatenation, replacing the
 cumbersome :func:`os.path.join` with the elegant:
 
 .. doctest:: path
-   :pyversion >= 3.4
+   :pyversion: >= 3.4
    
    >>> from pathlib import Path
    >>> usr = Path('/usr')
