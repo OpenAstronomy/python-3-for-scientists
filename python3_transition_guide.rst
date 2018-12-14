@@ -118,40 +118,54 @@ Upgrading existing Python 2 code
 
 If you have a lot of code with Python 2 ``print`` statements and other Python
 3-incompatible lines, it can be a huge pain to go file-by-file and modify the
-code to be compliant. Python provides a tool -- ``2to3`` -- to automatically
-identify code that will error in Python 3 and, optionally, to update it in
-place. The `Python documentation has a page
-<https://docs.python.org/2/library/2to3.html>`_ on how to use this tool. For a
-single file, calling ``2to3`` on the file without any flags will output a diff
-showing any invalid code. For example, if we have a script called "test.py"
-containing a single line ``print "yo"``
+code to be compliant. The `Python documentation has a page
+<https://docs.python.org/2/library/2to3.html>`_ on how to automate the tedious
+aspects of updating Python 2 code. While you may have heard Python does come
+with a tool called ``2to3`` to do this task, we would suggest intalling either
+`future <http://python-future.org/automatic_conversion.html>`_ or `modernize
+<https://python-modernize.readthedocs.io/en/latest/>`_ to update your code. You
+can install both of these tools with either ``conda`` or ``pip``. These tools
+rely on ``2to3`` to produce code that will run under both Python 2 and Python 3,
+allowing you to update your code incremenmtally as needed. Calling ``futurize``
+on a file containing Python 2 code without any flags will output a diff showing
+any invalid code. For example, if we have a script called "test.py" containing a
+single line ``print "yo"``
 
 .. code-block:: diff
 
-    % 2to3 test.py
-    --- test.py (original)
-    +++ test.py (refactored)
-    @@ -1 +1 @@
-    -print "yo"
-    +print("yo")
+    % futurize test.py
+    RefactoringTool: Skipping optional fixer: idioms
+    RefactoringTool: Skipping optional fixer: ws_comma
+    RefactoringTool: Refactored test.py
+    --- test.py	(original)
+    +++ test.py	(refactored)
+    @@ -1 +1,2 @@
+    -print 3
+    +from __future__ import print_function
+    +print(3)
     RefactoringTool: Files that need to be modified:
     RefactoringTool: test.py
 
-Note that it finds the Python 2-style ``print`` statement and even tells you what
-to change it to, but this did not modify the file to make it compatible. To
-actually fix the incompatible code, call with the ``-w`` flag
+Note that it finds the Python 2-style ``print`` statement and tells you what
+changes you would have to make to to make the compatible with both Python 2 (via
+the ``__future__`` import) and Python 3. To actually fix the incompatible code,
+call with the ``-w`` flag
 
 .. code-block:: diff
 
-    % 2to3 -w test.py
-    --- test.py (original)
-    +++ test.py (refactored)
-    @@ -1 +1 @@
-    -print "yo"
-    +print("yo")
+    % futureize -w test.py
+    RefactoringTool: Skipping optional fixer: idioms
+    RefactoringTool: Skipping optional fixer: ws_comma
+    RefactoringTool: Refactored test.py
+    --- test.py	(original)
+    +++ test.py	(refactored)
+    @@ -1 +1,2 @@
+    -print 3
+    +from __future__ import print_function
+    +print(3)
     RefactoringTool: Files that were modified:
     RefactoringTool: test.py
-
+    
 This can also be run on entire packages or directory trees to update code in
 bulk.
 
