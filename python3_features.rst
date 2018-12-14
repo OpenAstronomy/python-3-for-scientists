@@ -81,7 +81,9 @@ now do
 
     >>> import os
     >>> import glob
-    >>> glob.glob(os.path.join('data', '**', '*.fits'), recursive=True)
+    >>> results = glob.glob(
+    ...     os.path.join('data', '**', '*.fits'), recursive=True)
+    >>> sorted(results)
     ['data/image.fits', 'data/subset1/a.fits', 'data/subset1/b.fits',
      'data/subset1/c.fits', 'data/subset2/d.fits', 'data/subset2/e.fits']
 
@@ -520,13 +522,13 @@ One nice use case is for mathematical notation:
 .. doctest:: unicodevar
    :pyversion: >= 3.5
 
-   >>> from numpy import array, cos, sin
-   >>> def rotate(vector, angle):
-   ...     θ = angle
-   ...     mat = [[cos(θ), -sin(θ)],
-   ...            [sin(θ), cos(θ)]]
-   ...     mat = array(mat)
-   ...     return mat @ vector
+   from numpy import array, cos, sin
+   def rotate(vector, angle):
+        θ = angle
+        mat = [[cos(θ), -sin(θ)],
+               [sin(θ), cos(θ)]]
+        mat = array(mat)
+        return mat @ vector
 
 Using unicode variable names like this can make it easier to read complicated
 mathematical expressions and compare with the printed definition. Be careful not
